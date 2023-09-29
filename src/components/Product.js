@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import { add } from "../Store/cartSlice";
+import { useDispatch,useSelector } from "react-redux";
+import { getProducts } from "../Store/productSlice";
 
 function Product() {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const {data:products} = useSelector((state) => state.products);
+  // const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    // fetch("https://fakestoreapi.com/products")
+    //   .then((res) => res.json())
+    //   .then((data) =>{ setProducts(data)
+    //   console.log(products)});
+
+
+    dispatch(getProducts())
+
   }, []);
+
+  function addToCart(product) {
+    dispatch(add(product));
+  }
 
   const cards = products.map((product) => (
     <div key={product.id} className="col-md-3">
@@ -29,12 +42,12 @@ function Product() {
           alt={product.title}
         />
         <Card.Body>
-          <Card.Title style={{fontSize:"15px"}}>{product.title}</Card.Title>
+          <Card.Title style={{ fontSize: "15px" }}>{product.title}</Card.Title>
           <Card.Text>INR: {product.price} ₹</Card.Text>
           <Card.Text>Rate: {product.rating.rate} ✬</Card.Text>
         </Card.Body>
         <Card.Footer>
-          <Button variant="primary">Add to Cart</Button>
+          <Button variant="primary" onClick={() => addToCart(product)}>Add to Cart</Button>
         </Card.Footer>
       </Card>
     </div>

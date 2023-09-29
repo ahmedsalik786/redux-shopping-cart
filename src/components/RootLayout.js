@@ -1,14 +1,18 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
+import { Provider } from "react-redux";
+import store from "../Store/Store";
 
 function RootLayout() {
   return (
     <>
-      <Navbar />
-      <main>
-        <Outlet />
-      </main>
+      <Provider store={store}>
+        <Navbar />
+        <main>
+          <Outlet />
+        </main>
+      </Provider>
     </>
   );
 }

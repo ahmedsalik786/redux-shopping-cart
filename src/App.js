@@ -1,7 +1,6 @@
 import './App.css';
 import Cart from './components/Cart';
 import Dashboard from './components/Dashboard';
-import Product from './components/Product';
 import { createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from 'react-router-dom';
 import RootLayout from "./components/RootLayout"
 
@@ -15,7 +14,6 @@ function App() {
   ))
   return (
     <div className="App">
-      {/* <Product/> */}
       <RouterProvider router={router}/>
     </div>
   );

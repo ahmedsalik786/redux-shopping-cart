@@ -55,3 +55,9 @@
 .nav-container link{
   text-decoration: none!important;
 }
+.cart-container{
+  padding: 10px;
+  display: flex!important;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
